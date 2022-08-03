@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Form\ExportHistoryFilterType;
 use App\Repository\ExportHistoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -33,7 +34,11 @@ class ExportHistoryController extends AbstractController
         ]);
     }
 
-    private function filter(Request $request)
+    /**
+     * @param Request $request
+     * @return FormInterface
+     */
+    private function filter(Request $request): FormInterface
     {
         $form = $this->createForm(ExportHistoryFilterType::class, null);
 
