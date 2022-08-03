@@ -1,0 +1,23 @@
+label:
+  label:
+    form:
+      exportHistory:
+        submit: 'Zatwierdź'
+        place: 'Lokal'
+  page:
+    title:
+      exportHistory: Raport eksportów
+  choices:
+    exportHistory:
+      place1: Biuro 1
+      place2: Biuro 2
+      place3: Biuro 3
+  view:
+    table:
+      exportHistory:
+        name: Nazwa
+        exportAt:
+          date: Data
+          time: Godzina
+        user: Użytkownik
+        place: Lokal

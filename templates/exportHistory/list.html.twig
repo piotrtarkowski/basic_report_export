@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ 'label.page.title.exportHistory'|trans }}
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {{ form(filter) }}
+            </div>
+            <div class="col-md-8">
+                <table id="exportHistoryTable" class="table">
+                    <thead>
+                        <tr>
+                            <th>{{ 'label.view.table.exportHistory.name'|trans }}</th>
+                            <th>{{ 'label.view.table.exportHistory.exportAt.date'|trans }}</th>
+                            <th>{{ 'label.view.table.exportHistory.exportAt.time'|trans }}</th>
+                            <th>{{ 'label.view.table.exportHistory.user'|trans }}</th>
+                            <th>{{ 'label.view.table.exportHistory.place'|trans }}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% include 'exportHistory/table.html.twig' with { exportHistoryList: exportHistoryList} %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% for exportHistory in exportHistoryList %}
+    <tr>
+        <td>{{ exportHistory.name }}</td>
+        <td>{{ (exportHistory.exportAt)|date('Y-m-d') }}</td>
+        <td>{{ exportHistory.exportAt|date('H:i') }}</td>
+        <td>{{ exportHistory.user }}</td>
+        <td>{{ exportHistory.place }}</td>
+    </tr>
+{% endfor %}
