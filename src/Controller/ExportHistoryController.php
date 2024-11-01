@@ -13,20 +13,20 @@ use Symfony\Component\HttpFoundation\Response;
 class ExportHistoryController extends AbstractController
 {
 
+    private ExportHistoryRepository $exportHistoryRepository;
+    
+    public function __construct(ExportHistoryRepository $exportHistoryRepository)
+    {
+        $this->exportHistoryRepository = $exportHistoryRepository;
+    }
+
     /**
      * @Route("/", name="app_export-history_list")
      */
-    public function list(Request $request, ExportHistoryRepository $exportHistoryRepository): Response
+    public function list(Request $request): Response
     {
 
         $filter = $this->filter($request);
-
-        $data = [];
-        if ($filter->isSubmitted() && $filter->isValid()) {
-            $data = $filter->getData();
-        }
-
-        $exportHistoryList = $exportHistoryRepository->getList($data);
 
         return $this->render('exportHistory/list.html.twig', [
             'filter' => $filter->createView(),
@@ -36,14 +36,19 @@ class ExportHistoryController extends AbstractController
 
     /**
      * @param Request $request
-     * @return FormInterface
+     * @return array
      */
-    private function filter(Request $request): FormInterface
+    private function filter(Request $request): array
     {
         $form = $this->createForm(ExportHistoryFilterType::class, null);
 
+        $data = [];
+        
         $form->handleRequest($request);
+        if ($filter->isSubmitted() && $filter->isValid()) {
+            $data = $filter->getData();
+        }
 
-        return $form;
+        return $this->exportHistoryRepository->getList($data);
     }
 }
